@@ -49,7 +49,7 @@ def translate_to_french(text):
 def main():
     document = load_document_from_gcs(bucket_name, "SSRN-id3589962.pdf")
     tokens = nlp(document)
-    print(len(tokens))
+    print(f"Banyak token:{len(tokens)}")
     sentences = [token.text for token in tokens.sents]
     vectorizer = TfidfVectorizer()
 

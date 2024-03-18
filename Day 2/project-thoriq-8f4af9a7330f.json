@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "project-thoriq",
+  "private_key_id": "8f4af9a7330ff0fe08891144d01162cc95fc9c58",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCMchfqWW1tn3Vj\n52LL8S1hMRug57PkXQ5fl9Ke8/v4tXYr8boGLJYuy2f00An9cAk7LdpNoYpE8gD4\nyj1kTuy7UsOAFo1dOaExb5/QGl5NRyiFXzKEl7g47Wb1PGPkaNI8ZFMiqpwvaJZW\neYjMtkHVry+d1VQ5sBlk6ycfPbvZauN2iyDCD7TrUyf+fmijewowEpSQVjVVGPuI\nxP3gu8TpBrSR7bGv0GsYCflMDz19BlgZyBGyXhqBS52sPelZWzJ/iKslCrsBztnk\noCnWCaVlufOy4tAfPheXpsnUz5xUWlJazeySmX/pOfdlJytwpxv992oqh3zEfBc4\ntJ63w3srAgMBAAECggEARdndASZXIYWEahrD7XDXRBabiiyTMQoDQxIMpBfvAySl\nUHfaMIXub/mki4MI5O7a+H72q1OjpGTEjPhxDjmezg/8wfD1gB9Qh3jgAC2NJ1wz\n0Bmn04BuFIomgeP2PrzPi0/OdVhrc7zNwNaTblVbav7FbPeT+1kVWDcIbyZSDnC5\nSg3+mO9k9+Bm2fxx7dPneKCq9GXcO26uN+kYvT/2IVW+ifRIN2tmh4CU+BGP+zv/\nxP+sS3UMTAGfGz2rQD8pGXWduiCHPoqYg+JLYCwlJjsNFOqKaQjAsmKAZWOJPu/B\np+aef782zuAsBfCWxRl2mLZzswVwTHBtzWqWb/CTiQKBgQDFb97sOnwpNY84l86P\neibu26RRhAZtmPuPAXCgILCbJY/xpAR5qpeDk4UkIEntoeUixwNoRzmPgrHFJtHO\nozSa+MruaCFoCJf1bIMBm3NNk6+4CENSi2k2z7o6uylMJEittXo3UtF6a3DStzTI\ndyJ2HG7OZkKGM1EGSbL2ZJjUVQKBgQC2Gqima6XQmFNn2rYRvUBeDYwuUiqQLG9o\nCBG8ZUUTRnoVrFj2tYv76EVuicFGTJ6i1so2VVZi2jzcnz1yqzL3j0vedwJWCTbW\nR/p6108e6mC58VvZgOz/67yQq/49wjcqLHvUrYbsZbCdu1VBLne/DTOH9Ivv2laB\nKP9BXvaRfwKBgGVgivN7GFPEl5S0hjCvxRvylc3xX6eY3NpSH/Vos6YGRIIL+OxM\nBt5dugiRt8QX0+Lmkz5RDCI/Nm6H/0T+Ej3cr754o2aauwQewqnpmuvjgF+bho30\n3YJyaSpM/eiF3Pes7mNH2B3m2xinT6f7XCuPb+n1IgVshhcXcpgHkV29AoGBAILu\nB/Qf0ch4vP8esWlvuKfm9bMYQKIIUNFre9UIuvFw6rZKhGxde5hTGBix0tTIogZS\niHEoSkQoxTmbBIM9tBdqYBJDXtqdJWBLwDwyMiD4QzNt5awsljorNBiQkOu2iBM6\niI4RdcDiHGpMFrAWyOIEi9hka3i4cxnKcDyAGqfhAoGBAImiCQMeR0A2O+9ChLqW\neusOpogYLeWCdVFG7QPSj8NRJEmVNkyt9AUmzLjh9DNgI9X5qEjUPUCQcClvj5Yb\n2t6mn1hRnj5hk/QQ5sj7MOwOWyByUCkRsl+AgJKIPoFGkXemvrt/iqgpj2sF2E/q\n2o7mRS5aiOdSlwp5tplQLL59\n-----END PRIVATE KEY-----\n",
+  "client_email": "cloudstorage@project-thoriq.iam.gserviceaccount.com",
+  "client_id": "107126453020829998270",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cloudstorage%40project-thoriq.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

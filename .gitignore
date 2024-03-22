@@ -2,3 +2,5 @@ Day 1/*.json
 Day 1/Task
 Day 2/app.log
 Day 2/*.json
+*.env
+__pycache__

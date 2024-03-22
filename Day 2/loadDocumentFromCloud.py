@@ -9,16 +9,15 @@ import spacy
 from sklearn.feature_extraction.text import TfidfVectorizer
 import logging
 
+#Setting Inisiasi pada berbagai library dan logging
 logging.basicConfig(filename='app.log', level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-
 nlp = spacy.load('en_core_web_sm')
-
 load_dotenv()
+bucket_name = os.getenv("BUCKET_NAME")
+vectorizer = TfidfVectorizer()
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
-bucket_name = "zettatask"
-
+#Funcsi untuk load document sekaligus menjadikan teks
 def load_document_from_gcs(bucket_name, blob_name):
     try:
         client = storage.Client()
@@ -36,11 +35,11 @@ def load_document_from_gcs(bucket_name, blob_name):
         print(f"Terjadi error: {e}")
         return None
 
-
-def calculate_similarity(text1, text2, vectorizer):
-    vectorized_texts = vectorizer.transform([text1, text2])
-    similarity_score = cosine_similarity(vectorized_texts)
-    return similarity_score[0, 1]
+#Mengecek similaritas dalam dua text menggunakan skicit learns cosine_similarity
+#   - Cosine simmilarity ini digunakan untuk mencari perbedaan angle dari kedua text document yang sudah di translasikan
+def calculate_similarity(vector1, vector2):
+    similarity_score = cosine_similarity(vector1, vector2)
+    return similarity_score.diagonal()
 
 def translate_to_french(text):
     translated_text = GoogleTranslator(source='auto', target='fr').translate(text)
@@ -48,17 +47,21 @@ def translate_to_french(text):
 
 def main():
     document = load_document_from_gcs(bucket_name, "SSRN-id3589962.pdf")
-    tokens = nlp(document)
+    tokens = nlp(document) #Tokenisasi setiap kata
     print(f"Banyak token:{len(tokens)}")
-    sentences = [token.text for token in tokens.sents]
-    vectorizer = TfidfVectorizer()
+    sentences_en = [token.text for token in tokens.sents] #mendapatkan kalimat dari token.sents property
+
 
     # Melakukan vektorisasi pada teks yang telah diproses
-    vectorized_text = vectorizer.fit_transform(sentences)
-    fr_translated = [translate_to_french(sentence) for sentence in sentences]
-    fr_translated_doc = " ".join(fr_translated)
-    similarity_score = calculate_similarity(document, fr_translated_doc, vectorizer)
-    result = {"content": vectorized_text, "translated": fr_translated_doc, "similarity value": similarity_score}
+    vectorized_en = vectorizer.fit_transform(sentences_en) #Vectorisasi setiap text pada sentences
+    logging.info(vectorized_en)
+    fr_translated = [translate_to_french(sentence) for sentence in sentences_en] # Aku translate menggunakan DeepTranslator
+    vectorized_fr = vectorizer.transform(fr_translated)
+    similarity_score = calculate_similarity(vectorized_en, vectorized_fr)
+    result = []
+    for eng_sentence, fr_sentence, similarity_score in zip(sentences_en, fr_translated, similarity_score):
+        result.append({"content": eng_sentence, "translated": fr_sentence, "similarity value": similarity_score})
+        print(f'"content": {eng_sentence}, "translated": {fr_sentence}, "similarity value": {similarity_score}')
     logging.info(result)
     
     

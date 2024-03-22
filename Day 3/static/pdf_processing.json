@@ -1,0 +1,379 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "Thoriq",
+        "version": "1.0.0",
+        "title": "Thoriq PDF Processing documentation",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "servers": [
+        {
+            "url": "/"
+        }
+    ],
+    "tags": [
+        {
+            "name": "PDF Processing",
+            "description": "Example API for pdf Processing"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Test API"
+                ],
+                "summary": "Test the API",
+                "security": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Login to get access to the API using password"
+                ],
+                "summary": "Get the Authentication for accessing the main API function",
+                "requestBody": {
+                    "description": "login request parameter object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/requestLoginBody"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "security": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed to load document"
+                    }
+                }
+            }
+        },
+        "/load_document_content_from_gcs": {
+            "post": {
+                "tags": [
+                    "Load Document from GCP"
+                ],
+                "summary": "Load the document and return the entire process in webhooks",
+                "requestBody": {
+                    "description": "filename request body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/gcpRequestBody"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/returnNormal"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed to load document",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/returnNormal"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/load_document_content_from_link": {
+            "post": {
+                "tags": [
+                    "Load Document from link"
+                ],
+                "summary": "Load the entire document from link with text readable",
+                "requestBody": {
+                    "description": "link Request Post Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/linkRequestPostBody"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/returnNormal"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/returnNormal"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/translate_text_to_french": {
+            "post": {
+                "tags": [
+                    "Translating text into french"
+                ],
+                "summary": "Translate text into french language based on the parameters text that you've been inputted",
+                "requestBody": {
+                    "description": "text object body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/text"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/returnNormal"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/returnNormal"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/pdf_processing": {
+            "post": {
+                "tags": [
+                    "main processing pdf"
+                ],
+                "summary": "Load the entire document from platform and then processing into similar part of content",
+                "requestBody": {
+                    "description": "detail request body for pdf Processing",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/requestPdfProcessingBody"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/returnNormal"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/returnNormal"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "linkRequestPostBody": {
+                "type": "object",
+                "properties": {
+                    "link": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "returnNormal": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "Content": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "returnTranslatedText": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "format": "boolean"
+                    },
+                    "Message": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "Content": {
+                        "type": "The french translated text",
+                        "format": "string"
+                    }
+                }
+            },
+            "requestLoginBody": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "text": {
+                "type": "object",
+                "properties": {
+                    "text": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "gcpRequestBody": {
+                "type": "object",
+                "properties": {
+                    "filename": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "requestPdfProcessingBody": {
+                "type": "object",
+                "properties": {
+                    "platform": {
+                        "type": "string",
+                        "format": "string",
+                        "required": true,
+                        "enum": [
+                            "cloud",
+                            "link"
+                        ]
+                    },
+                    "link": {
+                        "type": "string",
+                        "format": "string",
+                        "required": false
+                    },
+                    "filename": {
+                        "type": "string",
+                        "format": "string",
+                        "required": false
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "apiKey": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Authorization",
+                "description": ">- Enter the token with the `Bearer: ` prefix, e.g. \"Bearer abcde12345\"."
+            },
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": ">- Enter the token with the Value , e.g. \" abcde12345\"."
+            }
+        }
+    },
+    "security": {
+        "apiKey": [],
+        "bearerAuth": []
+    }
+}
